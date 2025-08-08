@@ -5,9 +5,9 @@
     font-family: 'Roboto',sans-serif;
 }
 body {
-    /* background-color: black;
+    background-color: black;
     color: white; 
-    */
+   
 }
 
 .left {
@@ -29,4 +29,36 @@ body {
     list-style: none;
     padding-top: 14px;
     font-weight: bold;
+}
+
+.library{
+    min-height: 80vh;
+    position: relative;
+}
+.heading {
+     display: flex;
+    gap: 15px;
+    width: 100%;
+    padding-top: 14px;
+    padding: 23px 14px;
+    font-weight: bold;
+    align-items: center;
+    font-size: 13px;
+}
+
+.heading img{
+    width: 30px;
+}
+
+.footer {
+    display: flex;
+    font-size: 10px;
+    color: grey;
+    gap: 13px;
+    position: absolute;
+    bottom: 0;
+}
+
+.footer a{
+    color: grey;
 }
