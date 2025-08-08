@@ -71,3 +71,27 @@ body {
 .header > *{
     padding: 20px;
 }
+
+.spotifyPlaylist {
+    padding: 16px;
+}
+
+.spotifyPlaylist .cardContainer{
+    display: flex;
+    gap: 10px;
+    margin: 30px;
+    flex-wrap: wrap;
+}
+.card {
+    width: 200px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #313131;
+}
+.card > *{
+    padding-top: 9px;
+}
+.card img{
+    width: 100%;
+    object-fit: contain;
+}
