@@ -62,3 +62,12 @@ body {
 .footer a{
     color: grey;
 }
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(46, 43, 43);
+}
+.header > *{
+    padding: 20px;
+}
