@@ -33,3 +33,59 @@
 .p-1{
     padding: 10px;
 }
+
+
+/* --- Dark theme scrollbar (works in WebKit browsers) --- */
+/* Put these in your global CSS (e.g., :root or body) */
+:root{
+  --scrollbar-bg: #0f1720;    /* track */
+  --scrollbar-thumb: #2b3742; /* thumb */
+  --scrollbar-thumb-hover: #3b4953;
+  --scrollbar-thumb-active: #56626b;
+  --scrollbar-radius: 10px;
+  --scrollbar-width: 12px;    /* visual width */
+}
+
+/* Apply to the whole page */
+html, body {
+  scrollbar-width: thin;                 /* Firefox: 'auto'|'thin'|'none' */
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-bg); /* Firefox */
+}
+
+/* WebKit-based browsers */
+*::-webkit-scrollbar {
+  width: var(--scrollbar-width);
+  height: var(--scrollbar-width); /* for horizontal scrollbars */
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--scrollbar-bg);
+  border-radius: var(--scrollbar-radius);
+  margin: 6px; /* optional spacing so track doesn't hug content edge */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb);
+  border-radius: var(--scrollbar-radius);
+  border: 3px solid transparent; /* creates padding effect */
+  background-clip: padding-box;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: var(--scrollbar-thumb-hover);
+}
+
+*::-webkit-scrollbar-thumb:active {
+  background-color: var(--scrollbar-thumb-active);
+}
+
+/* Corner (when both scrollbars visible) */
+*::-webkit-scrollbar-corner {
+  background: var(--scrollbar-bg);
+}
+
+/* Example: a slightly thicker scrollbar for code blocks or side navs */
+.code-block {
+  scrollbar-width: thin;
+}
+.code-block::-webkit-scrollbar { width: 14px; }

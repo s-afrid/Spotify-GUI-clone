@@ -73,6 +73,12 @@ body {
     padding: 20px;
 }
 
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .spotifyPlaylist {
     padding: 16px;
 }
@@ -82,6 +88,8 @@ body {
     gap: 10px;
     margin: 30px;
     flex-wrap: wrap;
+    max-height: 70vh;
+    overflow-y: auto; 
 }
 .card {
     width: 200px;
@@ -109,4 +117,38 @@ body {
 .card:hover .play{
     opacity: 1;
     top: 160px;
+}
+
+
+.buttons > *{
+    margin: 0 12px;
+}
+.signupbtn{
+font-weight: bold;
+background-color: inherit;
+color: rgb(170, 170, 170);
+border: none;
+cursor: pointer;
+outline: none;
+font-size: 16px;
+transition: all 1s ease-out;
+}
+.signupbtn:hover{
+font-weight: bolder;
+transform: scale(1.1);
+color: white;
+}
+.loginbtn{
+    background-color: white;
+    color: black;
+    padding: 10px;
+    width: 79px;
+    cursor: pointer;
+    border-radius: 20px;
+    transition: all 1s ease-out;
+    font-weight: bold;
+}
+.loginbtn:hover{
+    font-weight: bolder;
+    transform: scale(1.1);
 }
