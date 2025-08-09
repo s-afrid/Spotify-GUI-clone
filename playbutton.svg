@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <!-- Green circular background -->
+  <circle cx="24" cy="24" r="24" fill="#1fdf64" />
+
+  <!-- Black play button with slightly rounded corners -->
+  <path d="
+    M18 17
+    Q18 14, 20 15
+    L32 23
+    Q34 24, 32 25
+    L20 33
+    Q18 34, 18 32
+    Z"
+    fill="black" />
+</svg>

@@ -57,6 +57,7 @@ body {
     gap: 13px;
     position: absolute;
     bottom: 0;
+    padding: 10px 0px;
 }
 
 .footer a{
@@ -87,6 +88,7 @@ body {
     padding: 10px;
     border-radius: 5px;
     background-color: #313131;
+    position: relative;
 }
 .card > *{
     padding-top: 9px;
@@ -94,4 +96,17 @@ body {
 .card img{
     width: 100%;
     object-fit: contain;
+}
+
+.play {
+    position: absolute;  
+    top: 270px;
+    left: 70px;
+    height: 40px;  
+    opacity: 0;
+    transition: all 1s ease-out;
+}
+.card:hover .play{
+    opacity: 1;
+    top: 160px;
 }
