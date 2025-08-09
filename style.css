@@ -16,6 +16,7 @@ body {
 } 
 .right {
     width: 75vw;
+    position: relative;
 }
 
 .home{
@@ -119,6 +120,21 @@ body {
     top: 160px;
 }
 
+.playbar{
+    position: absolute;
+    bottom: 10px;
+    width: 95%;
+    background-color: #5be78f;
+    padding: 12px;
+    border-radius: 10px;
+}
+
+.songbuttons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
 
 .buttons > *{
     margin: 0 12px;
