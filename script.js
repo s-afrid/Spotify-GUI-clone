@@ -28,9 +28,12 @@ async function getSongs(){
 }
 
 async function main() {
-    let songs = await getSongs()
-    console.log(songs)
 
+    // get list of all the songs
+    let songs = await getSongs()
+
+
+    // Show all songs in the playlist
     let songlist = document.querySelector(".songlist").getElementsByTagName("ul")[0]
     for (const song of songs) {
         songlist.innerHTML = songlist.innerHTML + `<li><img class="invert" src="music.svg" alt="">
@@ -43,6 +46,8 @@ async function main() {
                     <img class="invert" src="playbutton2.svg" alt="">
                   </div></li>`
     }
+
+    
 
     // play first song
     // var song = new Audio(songs[0]);

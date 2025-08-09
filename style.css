@@ -159,12 +159,35 @@ body {
 
 .playbar{
     position: fixed;
+    height: 40px;
     width: 69vw;
     bottom: 50px;
     background-color: #e3eee7;
     padding: 12px;
     border-radius: 10px;
+
 }
+
+.seekbar {
+    position: absolute;
+    bottom: 10px;
+    height: 2px;
+    width: 98%;
+    border: 2px solid black;
+    border-radius: 10px;
+    margin-bottom: 5px;
+}
+.circle{
+    width: 15px;
+    height: 15px;
+    border: 2px solid black;
+    border-radius: 13px;
+    background-color: black;
+    position: relative;
+    bottom: 9px;
+}
+
+
 
 .songbuttons{
     display: flex;
