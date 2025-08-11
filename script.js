@@ -32,7 +32,7 @@ async function getSongs(){
 const playMusic = (track) => {
     // let audio = new Audio("/songs/songs/"+track)
     currentSong.src = "/songs/songs/"+track
-    audio.play()
+    currentSong.play()
 
 }
 
@@ -64,6 +64,19 @@ async function main() {
             playMusic(e.querySelector(".info").getElementsByTagName("div")[0].innerHTML)
         })
         
+    })
+
+    // Attach an event listener to previous, play and next
+    play.addEventListener("click", ()=>{
+        if(currentSong.paused){
+            currentSong.play()
+            play.src = "pause.svg"
+        }
+        else{
+            currentSong.pause()
+            play.src = "playbutton2.svg"
+        }
+
     })
 
     // play first song
