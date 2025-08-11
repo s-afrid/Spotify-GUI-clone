@@ -1,3 +1,4 @@
+let currentSong = new Audio();
 async function getSongs(){
     /* This async function is used get songs from the link and stores them in a list */
     // Fetch the songs from folder, get response message. Store response text
@@ -27,8 +28,17 @@ async function getSongs(){
     return songs
 }
 
+
+const playMusic = (track) => {
+    // let audio = new Audio("/songs/songs/"+track)
+    currentSong.src = "/songs/songs/"+track
+    audio.play()
+
+}
+
 async function main() {
 
+    
     // get list of all the songs
     let songs = await getSongs()
 
@@ -47,7 +57,14 @@ async function main() {
                   </div></li>`
     }
 
-    
+    // Attach an event listener to each song
+    Array.from(document.querySelector(".songlist").getElementsByTagName("li")).forEach(e=>{
+        e.addEventListener("click",element=>{
+            console.log(e.querySelector(".info").getElementsByTagName("div")[0].innerHTML)
+            playMusic(e.querySelector(".info").getElementsByTagName("div")[0].innerHTML)
+        })
+        
+    })
 
     // play first song
     // var song = new Audio(songs[0]);

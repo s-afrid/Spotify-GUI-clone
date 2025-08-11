@@ -185,6 +185,8 @@ body {
     background-color: black;
     position: relative;
     bottom: 9px;
+    left: 0%;
+    transition: left 0.5s;
 }
 
 
