@@ -30,13 +30,15 @@ async function getSongs(){
 }
 
 
-const playMusic = (track) => {
+const playMusic = (track,pause=false) => {
     // let audio = new Audio("/songs/songs/"+track)
     currentSong.src = "/songs/songs/"+track
-    currentSong.play()
-    play.src = "pause.svg"
-
-    document.querySelector(".songinfo").innerHTML = track.slice(0,track.length-4)
+    
+    if(!pause){
+        currentSong.play()
+        play.src = "pause.svg"
+    }
+    document.querySelector(".songinfo").innerHTML = decodeURI(track)
 
     document.querySelector(".songtime").innerHTML = "00:00 / 00:00"
 }
@@ -60,7 +62,8 @@ async function main() {
     
     // get list of all the songs
     let songs = await getSongs()
-
+    // play default song when clicked on play button
+    playMusic(songs[0],true)
 
     // Show all songs in the playlist
     let songlist = document.querySelector(".songlist").getElementsByTagName("ul")[0]
@@ -88,6 +91,7 @@ async function main() {
     // Attach an event listener to previous, play and next
    
     play.addEventListener("click", ()=>{
+       
         if(currentSong.paused){
             currentSong.play()
             play.src = "pause.svg"
@@ -102,9 +106,8 @@ async function main() {
 
     // Listen for time update
     currentSong.addEventListener("timeupdate", ()=>{
-        document.querySelector(".songtime").innerHTML = `${formatTime(currentSong.currentTime)} / ${formatTime(currentSong.duration)}`
-        let circle = document.querySelector(".circle");
-        console.log(circle.setAttribute('style',`left: ${currentSong.duration/currentSong.currentTime}%`))
+        document.querySelector(".songtime").innerHTML = `${formatTime(currentSong.currentTime)} / ${formatTime(currentSong.duration)}`;
+
     })
 
     // play first song
