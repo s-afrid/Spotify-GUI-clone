@@ -182,15 +182,18 @@ body {
     border: 2px solid black;
     border-radius: 10px;
     margin-bottom: 5px;
-}
+    background-color: black;
+    cursor: pointer;
+    }
 .circle{
-    width: 15px;
-    height: 15px;
+   
+    width: 12px;
+    height: 12px;
     border: 2px solid black;
     border-radius: 13px;
     background-color: black;
     position: relative;
-    bottom: 9px;
+    bottom: 7px;
     left: 0%;
     transition: left 0.5s;
 }

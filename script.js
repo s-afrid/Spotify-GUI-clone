@@ -38,7 +38,7 @@ const playMusic = (track,pause=false) => {
         currentSong.play()
         play.src = "pause.svg"
     }
-    document.querySelector(".songinfo").innerHTML = decodeURI(track)
+    document.querySelector(".songinfo").innerHTML = decodeURI(track).slice(0,decodeURI(track).length-4)
 
     document.querySelector(".songtime").innerHTML = "00:00 / 00:00"
 }
@@ -107,8 +107,18 @@ async function main() {
     // Listen for time update
     currentSong.addEventListener("timeupdate", ()=>{
         document.querySelector(".songtime").innerHTML = `${formatTime(currentSong.currentTime)} / ${formatTime(currentSong.duration)}`;
+        document.querySelector(".circle").style.left = `${(currentSong.currentTime/currentSong.duration)*100 - 0.7}%`;
 
     })
+
+    // Add event listener to seekbar
+    document.querySelector(".seekbar").addEventListener("click", e=>{
+        let on_seek = (e.offsetX/e.target.getBoundingClientRect().width)*100
+        console.log(on_seek);
+        currentSong.currentTime = (on_seek/100)*currentSong.duration;
+        document.querySelector(".circle").style.left = `${on_seek}%`;
+        // getBoundingClientRect() -  provide information about the size of an element and its position relative to the viewport.
+    }) 
 
     // play first song
     // var song = new Audio(songs[0]);
