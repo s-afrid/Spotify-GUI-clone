@@ -164,6 +164,15 @@ body {
     border-radius: 10px;
 
 }
+.abovebar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: black;
+}
+.songinfo, .songtime{
+    padding: 0 12px;
+}
 
 .seekbar {
     position: absolute;

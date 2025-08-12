@@ -1,4 +1,5 @@
 let currentSong = new Audio();
+let play = document.getElementById("play")
 async function getSongs(){
     /* This async function is used get songs from the link and stores them in a list */
     // Fetch the songs from folder, get response message. Store response text
@@ -33,7 +34,25 @@ const playMusic = (track) => {
     // let audio = new Audio("/songs/songs/"+track)
     currentSong.src = "/songs/songs/"+track
     currentSong.play()
+    play.src = "pause.svg"
 
+    document.querySelector(".songinfo").innerHTML = track.slice(0,track.length-4)
+
+    document.querySelector(".songtime").innerHTML = "00:00 / 00:00"
+}
+
+function formatTime(seconds) {
+    // Ensure it's a number and not NaN
+    seconds = Math.floor(seconds); // Remove decimals
+
+    let minutes = Math.floor(seconds / 60);
+    let remainingSeconds = seconds % 60;
+
+    // Add leading zeros if needed
+    let formattedMinutes = String(minutes).padStart(2, '0');
+    let formattedSeconds = String(remainingSeconds).padStart(2, '0');
+
+    return `${formattedMinutes}:${formattedSeconds}`;
 }
 
 async function main() {
@@ -67,6 +86,7 @@ async function main() {
     })
 
     // Attach an event listener to previous, play and next
+   
     play.addEventListener("click", ()=>{
         if(currentSong.paused){
             currentSong.play()
@@ -77,6 +97,14 @@ async function main() {
             play.src = "playbutton2.svg"
         }
 
+    })
+    
+
+    // Listen for time update
+    currentSong.addEventListener("timeupdate", ()=>{
+        document.querySelector(".songtime").innerHTML = `${formatTime(currentSong.currentTime)} / ${formatTime(currentSong.duration)}`
+        let circle = document.querySelector(".circle");
+        console.log(circle.setAttribute('style',`left: ${currentSong.duration/currentSong.currentTime}%`))
     })
 
     // play first song
