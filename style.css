@@ -184,7 +184,7 @@ body {
   padding: 12px;
   transform: rotate(270deg);
   border-radius: 10px;
-  left: calc(100vw - 1em);
+right: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
