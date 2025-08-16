@@ -152,6 +152,24 @@ async function main() {
         }
         
     })
+
+    // Event listener to volume button
+    let toggle = false;
+    document.querySelector(".volume").addEventListener("click",()=>{
+        toggle = !toggle
+        if(toggle){
+            document.querySelector(".volume").src = "volume2.svg";
+            document.querySelector(".volumebar").style.visibility = "visible";
+        }
+        else {
+             document.querySelector(".volume").src = "volume.svg";
+            document.querySelector(".volumebar").style.visibility = "hidden";
+
+        }
+    })
+    
+    // Add event listener to input range
+    
     
     // play first song
     // var song = new Audio(songs[0]);
