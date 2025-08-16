@@ -1,5 +1,8 @@
+let songs;
 let currentSong = new Audio();
 let play = document.getElementById("play")
+let previous = document.getElementById("prev")
+let next = document.getElementById("next")
 async function getSongs(){
     /* This async function is used get songs from the link and stores them in a list */
     // Fetch the songs from folder, get response message. Store response text
@@ -38,12 +41,15 @@ const playMusic = (track,pause=false) => {
         currentSong.play()
         play.src = "pause.svg"
     }
-    document.querySelector(".songinfo").innerHTML = decodeURI(track).slice(0,decodeURI(track).length-4)
+    document.querySelector(".songinfo").innerHTML = `<p>${decodeURI(track).slice(0,decodeURI(track).length-4)}</p>`
 
     document.querySelector(".songtime").innerHTML = "00:00 / 00:00"
 }
 
 function formatTime(seconds) {
+    if(isNaN(seconds) || seconds<0){
+        return "00:00"
+    }
     // Ensure it's a number and not NaN
     seconds = Math.floor(seconds); // Remove decimals
 
@@ -61,7 +67,7 @@ async function main() {
 
     
     // get list of all the songs
-    let songs = await getSongs()
+    songs = await getSongs()
     // play default song when clicked on play button
     playMusic(songs[0],true)
 
@@ -70,7 +76,7 @@ async function main() {
     for (const song of songs) {
         songlist.innerHTML = songlist.innerHTML + `<li><img class="invert" src="music.svg" alt="">
                   <div class="info">
-                    <div>${song.replaceAll("%20"," ")}</div>
+                    <div><p>${song.replaceAll("%20"," ")}</p></div>
                     <div>Artists Name</div>
                   </div>
                   <div class="playnow">
@@ -82,8 +88,8 @@ async function main() {
     // Attach an event listener to each song
     Array.from(document.querySelector(".songlist").getElementsByTagName("li")).forEach(e=>{
         e.addEventListener("click",element=>{
-            console.log(e.querySelector(".info").getElementsByTagName("div")[0].innerHTML)
-            playMusic(e.querySelector(".info").getElementsByTagName("div")[0].innerHTML)
+            console.log(e.querySelector(".info").getElementsByTagName("div")[0].innerText)
+            playMusic(e.querySelector(".info").getElementsByTagName("div")[0].innerText)
         })
         
     })
@@ -130,6 +136,23 @@ async function main() {
         document.querySelector(".left").style.left = "-120%";
     })
 
+    // Add event listener to previous and next
+    previous.addEventListener("click",()=>{
+        console.log('Previous')
+        let index = songs.indexOf(currentSong.src.split("/").slice(-1)[0])
+        if(index > 0){
+            playMusic(songs[index-1])
+        }
+    })
+    next.addEventListener("click",()=>{
+        console.log('Next')
+        let index = songs.indexOf(currentSong.src.split("/").slice(-1)[0])
+        if(index < songs.length-1){
+            playMusic(songs[index+1])
+        }
+        
+    })
+    
     // play first song
     // var song = new Audio(songs[0]);
     // //song.play();

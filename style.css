@@ -101,6 +101,7 @@ body {
     position: absolute;
     bottom: 0;
     padding: 10px 0px;
+    flex-wrap: wrap;
 }
 
 .footer a{
@@ -188,6 +189,28 @@ body {
 .songinfo, .songtime{
     padding: 0 12px;
 }
+.songinfo{
+    max-width: 20%;
+    max-height: 25px;
+    white-space: nowrap;
+     overflow-x: auto;      /* allow horizontal scrolling */
+  overflow-y: hidden;    /* disable vertical scrolling */
+  
+  -ms-overflow-style: none;  /* hide scrollbar (IE/Edge) */
+  scrollbar-width: none; 
+}
+.songinfo p{
+    display: inline-block;
+  padding-left: 100%;  /* start off-screen */
+  animation: scroll-left-right 10s linear infinite;
+}
+
+/* Keyframes for back-and-forth */
+@keyframes scroll-left-right {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
 
 .seekbar {
     position: absolute;
@@ -304,7 +327,7 @@ color: white;
     .loginbtn{
         margin: 0px 0px;
     }
-    
+}
 @media (max-width: 560px) {
     .cardContainer{
         justify-content: center;
