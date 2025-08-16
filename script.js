@@ -120,6 +120,16 @@ async function main() {
         // getBoundingClientRect() -  provide information about the size of an element and its position relative to the viewport.
     }) 
 
+    // Click on hamburger to view left
+    document.querySelector(".hamburger").addEventListener("click", ()=>{
+        document.querySelector(".left").style.left = "0";
+    })
+
+    // Click on close to close left
+    document.querySelector(".close").addEventListener("click",()=>{
+        document.querySelector(".left").style.left = "-120%";
+    })
+
     // play first song
     // var song = new Audio(songs[0]);
     // //song.play();
