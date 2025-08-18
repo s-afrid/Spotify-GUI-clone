@@ -1,12 +1,14 @@
+let currentFolder;
 let songs;
 let currentSong = new Audio();
 let play = document.getElementById("play")
 let previous = document.getElementById("prev")
 let next = document.getElementById("next")
-async function getSongs(){
+async function getSongs(folder){
+    currentFolder = folder;
     /* This async function is used get songs from the link and stores them in a list */
     // Fetch the songs from folder, get response message. Store response text
-    let a = await fetch("http://127.0.0.1:3000/songs/songs/")
+    let a = await fetch(`http://127.0.0.1:3000/${currentFolder}/`)
     let response = await a.text()
     // Create a div element and add the reponse html code inside it
     let div = document.createElement("div")
@@ -21,7 +23,7 @@ async function getSongs(){
     {
         const element = as[i];
         if(element.href.endsWith(".mp3")){
-            songs.push(element.href.split('/songs/songs/')[1]) 
+            songs.push(element.href.split(`/${currentFolder}/`)[1]) 
             // split return array of two strings split from one
             // split the string by a pivot ('/songs/songs/') and get its second part
         }
@@ -33,7 +35,7 @@ async function getSongs(){
 
 const playMusic = (track,pause=false) => {
     // let audio = new Audio("/songs/songs/"+track)
-    currentSong.src = "/songs/songs/"+track
+    currentSong.src = `/${currentFolder}/`+track
     
     if(!pause){
         currentSong.play()
@@ -65,7 +67,9 @@ async function main() {
 
     
     // get list of all the songs
-    songs = await getSongs()
+    songs = await getSongs("songs/cs")
+    console.log(songs);
+    
     // play default song when clicked on play button
     playMusic(songs[0],true)
 
@@ -169,9 +173,10 @@ async function main() {
         currentSong.volume = e.target.value / 100;
     })
 
-    // Add event listener to input range
+    // load playlist when card is clicked
     
-    
+
+
     // play first song
     // var song = new Audio(songs[0]);
     // //song.play();
