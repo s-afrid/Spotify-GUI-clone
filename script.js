@@ -8,13 +8,11 @@ async function getSongs(){
     // Fetch the songs from folder, get response message. Store response text
     let a = await fetch("http://127.0.0.1:3000/songs/songs/")
     let response = await a.text()
-    console.log(response);
     // Create a div element and add the reponse html code inside it
     let div = document.createElement("div")
     div.innerHTML = response;
     // get all the anchor tags inside the div
     let as = div.getElementsByTagName("a")
-    console.log(as)
     
     let songs = [] // Array to store songs
 
@@ -88,7 +86,6 @@ async function main() {
     // Attach an event listener to each song
     Array.from(document.querySelector(".songlist").getElementsByTagName("li")).forEach(e=>{
         e.addEventListener("click",element=>{
-            console.log(e.querySelector(".info").getElementsByTagName("div")[0].innerText)
             playMusic(e.querySelector(".info").getElementsByTagName("div")[0].innerText)
         })
         
@@ -120,7 +117,6 @@ async function main() {
     // Add event listener to seekbar
     document.querySelector(".seekbar").addEventListener("click", e=>{
         let on_seek = (e.offsetX/e.target.getBoundingClientRect().width)*100
-        console.log(on_seek);
         currentSong.currentTime = (on_seek/100)*currentSong.duration;
         document.querySelector(".circle").style.left = `${on_seek}%`;
         // getBoundingClientRect() -  provide information about the size of an element and its position relative to the viewport.
@@ -168,6 +164,11 @@ async function main() {
         }
     })
     
+    // add an event to volume
+    document.querySelector(".range").addEventListener("change",(e)=>{
+        currentSong.volume = e.target.value / 100;
+    })
+
     // Add event listener to input range
     
     
