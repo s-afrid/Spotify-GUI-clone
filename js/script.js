@@ -106,7 +106,7 @@ async function displayAlbums() {
   let array1 = Array.from(anchors);
   for (let index = 0; index < array1.length; index++) {
     const e = array1[index];
-    if (e.href.includes("/songs")) {
+    if (e.href.includes("/songs") && !(e.href.includes(".htaccess"))) {
       let folder_name = e.href.split("/").slice(-2, -1)[0];
       if (folder_name != "songs") {
         // get meta data stored in json from folder
