@@ -37,14 +37,14 @@ async function getSongs(folder) {
   for (const song of songs) {
     songlist.innerHTML =
       songlist.innerHTML +
-      `<li><img class="invert" src="music.svg" alt="">
+      `<li><img class="invert" src="img/music.svg" alt="">
                   <div class="info">
                     <div><p>${song.replaceAll("%20", " ")}</p></div>
                     <div>Artists Name</div>
                   </div>
                   <div class="playnow">
                     <span>Play Now</span>
-                    <img class="invert" src="playbutton2.svg" alt="">
+                    <img class="invert" src="img/playbutton2.svg" alt="">
                   </div></li>`;
   }
 
@@ -58,6 +58,8 @@ async function getSongs(folder) {
       );
     });
   });
+
+  return songs;
 }
 
 const playMusic = (track, pause = false) => {
@@ -66,7 +68,7 @@ const playMusic = (track, pause = false) => {
 
   if (!pause) {
     currentSong.play();
-    play.src = "pause.svg";
+    play.src = "img/pause.svg";
   }
   document.querySelector(".songinfo").innerHTML = `<p>${decodeURI(track).slice(
     0,
@@ -115,7 +117,7 @@ async function displayAlbums() {
         cardcontainer.innerHTML =
           cardcontainer.innerHTML +
           `<div data-folder="${folder_name}" class="card">
-              <img class="play" src="playbutton.svg" alt="" width="30" height="30" />
+              <img class="play" src="img/playbutton.svg" alt="" width="30" height="30" />
               <img
                 src="/songs/${folder_name}/cover.jpg"
                 alt=""
@@ -126,13 +128,19 @@ async function displayAlbums() {
       }
     }
   }
+
+  //Play the first song
+
   // load playlist when card is clicked
   Array.from(document.getElementsByClassName("card")).forEach((e) => {
     e.addEventListener("click", async (item) => {
 
       songs = await getSongs(`songs/${item.currentTarget.dataset.folder}`);
+      playMusic(songs[0]);
     });
   });
+
+  
 }
 
 async function main() {
@@ -150,10 +158,10 @@ async function main() {
   play.addEventListener("click", () => {
     if (currentSong.paused) {
       currentSong.play();
-      play.src = "pause.svg";
+      play.src = "img/pause.svg";
     } else {
       currentSong.pause();
-      play.src = "playbutton2.svg";
+      play.src = "img/playbutton2.svg";
     }
   });
 
@@ -201,19 +209,35 @@ async function main() {
     }
   });
 
-  // Event listener to volume button
-  let toggle = false;
-  document.querySelector(".volume").addEventListener("click", () => {
-    toggle = !toggle;
-    if (toggle) {
-      document.querySelector(".volume").src = "volume2.svg";
-      document.querySelector(".volumebar").style.visibility = "visible";
-    } else {
-      document.querySelector(".volume").src = "volume.svg";
-      document.querySelector(".volumebar").style.visibility = "hidden";
+  // Event listener for mute
+  let toggle2 = false;
+  document.querySelector(".volume").addEventListener("dblclick", () => {
+    toggle2 = !toggle2;
+    if (toggle2) {
+      document.querySelector(".volume").src = "img/mute.svg";
+      currentSong.volume = 0;
+      document.querySelector(".range").value = 0;
     }
   });
 
+
+  // Event listener to volume button
+  let toggle1 = false;
+  document.querySelector(".volume").addEventListener("click", () => {
+    toggle1 = !toggle1;
+    if (toggle1) {
+      document.querySelector(".volume").src = "img/volume2.svg";
+      document.querySelector(".volumebar").style.visibility = "visible";
+      
+      }
+     else {
+      document.querySelector(".volume").src = "img/volume.svg";
+      document.querySelector(".volumebar").style.visibility = "hidden";
+      
+    }
+});
+
+  
   // add an event to volume
   document.querySelector(".range").addEventListener("change", (e) => {
     currentSong.volume = e.target.value / 100;
