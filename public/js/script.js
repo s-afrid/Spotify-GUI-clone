@@ -5,6 +5,7 @@ let play = document.getElementById("play");
 let previous = document.getElementById("prev");
 let next = document.getElementById("next");
 
+
 async function getSongs(folder) {
   currentFolder = folder;
   /* This async function is used get songs from the link and stores them in a list */
