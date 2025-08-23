@@ -9,7 +9,7 @@ async function getSongs(folder) {
   currentFolder = folder;
   /* This async function is used get songs from the link and stores them in a list */
   // Fetch the songs from folder, get response message. Store response text
-  let a = await fetch(`${currentFolder}/`);
+  let a = await fetch(`http://127.0.0.1:3000/${currentFolder}/`);
   let response = await a.text();
   // Create a div element and add the reponse html code inside it
   let div = document.createElement("div");
@@ -96,7 +96,7 @@ function formatTime(seconds) {
 }
 
 async function displayAlbums() {
-  let a = await fetch(`./songs/`);
+  let a = await fetch(`http://127.0.0.1:3000/songs/`);
   let response = await a.text();
   // Create a div element and add the reponse html code inside it
   let div = document.createElement("div");
@@ -111,7 +111,7 @@ async function displayAlbums() {
       if (folder_name != "songs") {
         // get meta data stored in json from folder
         let a = await fetch(
-          `./songs/${folder_name}/info.json`
+          `http://127.0.0.1:3000/songs/${folder_name}/info.json`
         );
         let response = await a.json();
         cardcontainer.innerHTML =
@@ -145,7 +145,7 @@ async function displayAlbums() {
 
 async function main() {
   // get list of all the songs
-  await getSongs("./songs/cs");
+  await getSongs("songs/cs");
 
   // play default song when clicked on play button
   playMusic(songs[0], true);
